@@ -23,7 +23,7 @@ export default {
     id: "2796391",                        // MyDirtyHobby ID (from profile URL)
     name: "TexasPatti",                    // Display name
     username: "TexasPatti",            // MDH username
-    tagline: "Dein heißes Girl von nebenan",
+    tagline: "Der Lone Star der deutschen Erotikszene",
 
     // Profile URL (with your affiliate tracking)
     profileUrl: "https://www.mydirtyhobby.de/profil/2796391-TexasPatti",
@@ -33,15 +33,15 @@ export default {
     headerImage: "/images/header.jpg",
 
     // About Section
-    bio: `Willkommen auf meiner offiziellen Seite! Hier findest du meine exklusiven Videos.`,
+    bio: `Von Münster bis Hollywood – Texas Patti hat sich den Stern verdient. Mit über 250 Produktionen und der Aufnahme in die AVN Hall of Fame 2025 ist sie Deutschlands heißester Export in die Welt der Erotik.`,
 
     // Extended SEO Content
     seoContent: {
-      heroSubtitle: "Erlebe authentische Amateur-Videos",
-      aboutExtended: `Beschreibung des Models...`,
-      whyWatch: `Was dieses Model besonders macht...`,
-      categories: ["Amateur", "Deutsch", "Solo"],
-      metaKeywords: ["Model Name Videos", "Deutsche Amateur Videos"]
+      heroSubtitle: "AVN Hall of Fame 2025 ★ Über 250 Produktionen ★ Bekannt aus RTL2",
+      aboutExtended: `Texas Patti, bürgerlich Bettina Habig, zählt zu den bekanntesten deutschen Erotikdarstellerinnen weltweit. Ihr Weg begann in einer Zahnarztpraxis in Münster und führte sie bis nach Hollywood zu den größten Studios der Branche.\n\nSeit 2017 ist sie festes Mitglied der amerikanischen Erotikszene und arbeitet mit Top-Produktionen wie Brazzers, Evil Angel und Jules Jordan zusammen. Als einzige Deutsche besitzt sie einen Exklusivvertrag bei OC Modeling.\n\nIhre authentische Art und die Verbindung zu ihren Fans machen sie zu einer Ausnahmeerscheinung in der Branche. Die RTL2-Dokumentation "Mein Leben am Höhepunkt" gewährte 2025 intime Einblicke in ihr Leben abseits der Kameras.`,
+      whyWatch: `Texas Patti verbindet deutsche Bodenständigkeit mit amerikanischem Entertainment. Ihre Videos zeichnen sich durch Authentizität, Professionalität und echte Leidenschaft aus. Als AVN Hall of Fame Mitglied steht sie für höchste Qualität in der Erotikbranche.`,
+      categories: ["Deutsche Pornodarstellerin", "AVN Hall of Fame", "Amateur", "Hardcore", "Gangbang", "Bukkake", "MILF", "Tattoo Girls", "Bisexuell"],
+      metaKeywords: ["Texas Patti", "Texas Patti Videos", "Bettina Habig", "Deutsche Pornodarstellerin", "AVN Hall of Fame", "MyDirtyHobby", "Texas Patti Pornos", "Texas Patti RTL2"]
     },
 
     // Profile Details (optional - set to null if not applicable)

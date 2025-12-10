@@ -8,7 +8,10 @@
           <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-primary/50">
             <img src="<%= typeof profile !== 'undefined' && profile && profile.avatar ? profile.avatar : (typeof basePath !== 'undefined' ? basePath : '') + config.model.avatar.replace(/^\//, '') %>" alt="<%= config.model.name %>" class="w-full h-full object-cover">
           </div>
-          <span class="text-xl font-bold text-white"><%= config.model.name %></span>
+          <span class="text-xl font-bold text-white flex items-center gap-2">
+            <%= config.model.name %>
+            <span class="text-amber-400 text-sm">★</span>
+          </span>
         </a>
         <p class="text-text-secondary text-sm leading-relaxed max-w-md">
           <%= config.model.bio.substring(0, 200) %>...
@@ -62,8 +65,10 @@
     <!-- Bottom Bar -->
     <div class="pt-8 border-t border-zinc-800">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-text-secondary text-sm">
+        <p class="text-text-secondary text-sm flex items-center gap-2">
+          <span class="text-amber-400">★</span>
           &copy; <%= currentYear %> <%= config.model.name %>. Alle Rechte vorbehalten.
+          <span class="text-amber-400">★</span>
         </p>
         <p class="text-text-secondary text-xs">
           Diese Seite enthält Inhalte nur für Erwachsene (18+).

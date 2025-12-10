@@ -24,11 +24,19 @@
 
           <!-- Info -->
           <div class="text-center md:text-left animate-slide-up">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4">
-              <%= config.model.name %>
-            </h1>
-            <p class="text-xl md:text-2xl text-primary font-medium mb-4">
+            <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
+                <%= config.model.name %>
+              </h1>
+              <!-- Texas Lone Star -->
+              <svg class="w-10 h-10 md:w-12 md:h-12 text-amber-400 animate-pulse-slow" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <p class="text-xl md:text-2xl text-primary font-medium mb-4 flex items-center justify-center md:justify-start gap-2">
+              <span class="text-amber-400 star-glow">★</span>
               <%= config.model.tagline %>
+              <span class="text-amber-400 star-glow">★</span>
             </p>
             <% if (config.model.seoContent && config.model.seoContent.heroSubtitle) { %>
             <p class="text-lg text-text-secondary mb-6">
@@ -278,46 +286,319 @@
       </div>
     </section>
 
-    <!-- SEO FAQ Section -->
-    <section class="py-16">
+    <!-- SEO Content Section -->
+    <section class="py-16" itemscope itemtype="https://schema.org/Person">
       <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
-          <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-8">Häufige Fragen</h2>
+          <article class="bg-bg-card rounded-2xl p-8 md:p-12">
+            <header class="mb-8">
+              <h2 class="text-2xl md:text-3xl font-bold text-white mb-4" itemprop="name">Texas Patti – Das Portrait einer Ausnahmekarriere</h2>
+              <p class="text-text-secondary leading-relaxed text-lg">
+                Kaum eine andere deutsche Darstellerin hat die internationale Erotikszene so nachhaltig geprägt wie <strong class="text-white">Texas Patti</strong>. Die gebürtige Münsteranerin hat sich vom regionalen Geheimtipp zur weltweit gefragten Performerin entwickelt und dabei Maßstäbe gesetzt, die ihresgleichen suchen.
+              </p>
+            </header>
+
+            <!-- Steckbrief -->
+            <div class="bg-bg-secondary/50 rounded-xl p-6 mb-8">
+              <h3 class="text-xl font-semibold text-white mb-4">Persönliches Profil im Überblick</h3>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <span class="block text-text-secondary">Geburtsname</span>
+                  <span class="text-white font-medium" itemprop="name">Bettina Habig</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Zur Welt gekommen</span>
+                  <time class="text-white font-medium" itemprop="birthDate" datetime="1982-01-03">03.01.1982</time>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Heimatstadt</span>
+                  <span class="text-white font-medium" itemprop="birthPlace">Münster (Westfalen)</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Aktuelles Alter</span>
+                  <span class="text-white font-medium">39</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Körpergröße</span>
+                  <span class="text-white font-medium" itemprop="height">1,70 m</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Körpergewicht</span>
+                  <span class="text-white font-medium" itemprop="weight">58 kg</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Augen</span>
+                  <span class="text-white font-medium">Braun</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Haare</span>
+                  <span class="text-white font-medium">Schwarz, lang</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Figurtyp</span>
+                  <span class="text-white font-medium">Sportlich, athletisch</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Körbchengröße</span>
+                  <span class="text-white font-medium">C (85 cm)</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Körperschmuck</span>
+                  <span class="text-white font-medium">Tattoos, Piercings</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Tierkreiszeichen</span>
+                  <span class="text-white font-medium">Steinbock</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Familienstand</span>
+                  <span class="text-white font-medium">Verheiratet</span>
+                </div>
+                <div>
+                  <span class="block text-text-secondary">Orientierung</span>
+                  <span class="text-white font-medium">Bisexuell</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Karriere -->
+            <div class="mb-8">
+              <h3 class="text-xl font-semibold text-white mb-4">Der ungewöhnliche Weg zum Erfolg</h3>
+
+              <h4 class="text-lg font-medium text-primary mb-3">Ein Leben zwischen Zahnarztpraxis und Kamera</h4>
+              <p class="text-text-secondary leading-relaxed mb-4">
+                Wer heute den Namen Texas Patti hört, denkt sofort an eine selbstbewusste Entertainerin mit internationaler Reichweite. Doch der Anfang ihrer Geschichte spielte sich fernab von Scheinwerfern ab: <strong class="text-white">Über anderthalb Jahrzehnte verdiente sie ihr Geld als Assistenz in einer Zahnarztpraxis</strong> – ein bodenständiger Beruf, der kaum gegensätzlicher zu ihrer späteren Laufbahn sein könnte.
+              </p>
+              <p class="text-text-secondary leading-relaxed mb-6">
+                Parallel zu ihrem Alltag zwischen Behandlungsstühlen und Terminkalendern begann sie, eigene Clips auf diversen Plattformen zu veröffentlichen. Was als kreatives Ventil startete, entwickelte sich rasant zum Publikumsmagneten. Als ihr damaliger Arbeitgeber Wind davon bekam, folgte die Kündigung – ein Moment, der sich im Nachhinein als Sprungbrett entpuppte.
+              </p>
+
+              <h4 class="text-lg font-medium text-primary mb-3">Aufstieg in der amerikanischen Szene</h4>
+              <p class="text-text-secondary leading-relaxed mb-4">
+                Der entscheidende Karriereschritt kam <strong class="text-white">2017 mit dem Sprung über den Atlantik</strong>. In den Vereinigten Staaten öffneten sich Türen, die in Europa verschlossen geblieben wären. Die Produktionsfirmen der obersten Liga klopften an:
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Hustler</span>
+                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Evil Angel</span>
+                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Brazzers</span>
+                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Jules Jordan</span>
+                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Naughty America</span>
+                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Hard X</span>
+              </div>
+              <p class="text-text-secondary leading-relaxed mb-6">
+                Ein besonderer Meilenstein: Als <strong class="text-white">Exklusivkünstlerin bei OC Modeling</strong> nimmt sie eine Sonderstellung ein – keine andere Darstellerin aus der Bundesrepublik kann diesen Status vorweisen.
+              </p>
+
+              <h4 class="text-lg font-medium text-primary mb-3">Vielseitigkeit als Erfolgsrezept</h4>
+              <p class="text-text-secondary leading-relaxed mb-4">
+                Texas Patti beschränkt sich längst nicht aufs Performen. Ihr Repertoire umfasst deutlich mehr:
+              </p>
+              <ul class="text-text-secondary space-y-2 mb-6 list-none">
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Präsentation der legendären Harry-S.-Morgan-Formate</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Gastgeberin von "DSDSA" im Jahr 2014</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Langfristige Zusammenarbeit mit Happy Weekend (seit Ende 2012)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Markenbotschafterin der Novum-Filialkette (seit 2014)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Gesicht von Beate-Uhse.TV (seit 2015)</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Auszeichnungen -->
+            <div class="bg-bg-secondary/50 rounded-xl p-6 mb-8">
+              <h3 class="text-xl font-semibold text-white mb-4">Anerkennungen & Meilensteine</h3>
+              <p class="text-text-secondary leading-relaxed mb-4">Die Branche hat Texas Pattis Schaffen mehrfach gewürdigt:</p>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <span class="px-3 py-1 bg-primary text-white text-sm font-bold rounded">2019</span>
+                  <span class="text-text-secondary">Gastgeberin bei den XBIZ Awards (Berlin)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="px-3 py-1 bg-primary text-white text-sm font-bold rounded">2020</span>
+                  <span class="text-text-secondary">Teil des Moderationsteams bei den AVN Awards (Las Vegas)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="px-3 py-1 bg-primary text-white text-sm font-bold rounded">2025</span>
+                  <span class="text-white font-medium">Einzug in die AVN Hall of Fame</span>
+                </div>
+              </div>
+              <p class="text-text-secondary leading-relaxed mt-4">
+                Ihr Gesamtwerk umfasst mittlerweile <strong class="text-white">weit über 250 professionell produzierte Titel</strong> – eine beeindruckende Bilanz, die kontinuierlich wächst.
+              </p>
+            </div>
+
+            <!-- Dokumentation -->
+            <div class="mb-8">
+              <h3 class="text-xl font-semibold text-white mb-4">Einblicke hinter die Kulissen</h3>
+              <p class="text-text-secondary leading-relaxed">
+                Im Frühjahr 2025 gewährte RTL2 dem Publikum mit der Doku-Reihe <em class="text-white">"Texas Patti – Mein Leben am Höhepunkt"</em> seltene Einblicke. Über vier Episoden hinweg zeigt die Produktion ungeschönte Facetten ihres Alltags, die Herausforderungen der Branche und persönliche Momente abseits der Kameras.
+              </p>
+            </div>
+
+            <!-- Privatleben -->
+            <div class="border-t border-zinc-700 pt-8">
+              <h3 class="text-xl font-semibold text-white mb-4">Abseits des Rampenlichts</h3>
+              <p class="text-text-secondary leading-relaxed mb-4">
+                Privat führt Texas Patti eine feste Partnerschaft mit <strong class="text-white">Patrick Habig</strong>, dessen Nachnamen sie trägt. Der Entschluss, in die Erotikbranche zu wechseln, stellte familiäre Beziehungen auf eine harte Probe. Ihre Eltern distanzierten sich zunächst – ein schmerzhafter Bruch, über den sie heute offen spricht und damit anderen Betroffenen Mut macht.
+              </p>
+              <p class="text-text-secondary leading-relaxed">
+                Auf ihren Kanälen beschreibt sie sich als jemand, der das Ausleben vor der Kamera liebt und stets offen für kreative Vorschläge ihrer Community ist.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEO FAQ Section -->
+    <section class="py-16 bg-bg-secondary" itemscope itemtype="https://schema.org/FAQPage">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-8">Häufig gestellte Fragen</h2>
 
           <div class="space-y-4">
-            <details class="bg-bg-card rounded-xl group">
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
               <summary class="flex items-center justify-between p-6 cursor-pointer">
-                <span class="font-semibold text-white">Wo kann ich Videos von <%= config.model.name %> sehen?</span>
+                <span class="font-semibold text-white" itemprop="name">Welchen Namen trägt Texas Patti im echten Leben?</span>
                 <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </summary>
-              <div class="px-6 pb-6 text-text-secondary">
-                Alle exklusiven Videos von <%= config.model.name %> findest du auf MyDirtyHobby. Diese Seite bietet dir eine Vorschau und verlinkt direkt zu den vollständigen Videos auf der Plattform.
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Hinter dem Künstlernamen verbirgt sich <strong>Bettina Habig</strong>. Den Nachnamen erhielt sie durch die Ehe mit ihrem Partner Patrick.</p>
               </div>
             </details>
 
-            <details class="bg-bg-card rounded-xl group">
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
               <summary class="flex items-center justify-between p-6 cursor-pointer">
-                <span class="font-semibold text-white">Wie viele Videos hat <%= config.model.name %>?</span>
+                <span class="font-semibold text-white" itemprop="name">Wann wurde Texas Patti geboren und wie alt ist sie?</span>
                 <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </summary>
-              <div class="px-6 pb-6 text-text-secondary">
-                Aktuell hat <%= config.model.name %> <%= totalVideos %> Videos auf MyDirtyHobby veröffentlicht. Neue Inhalte werden regelmäßig hinzugefügt.
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Sie erblickte am <strong>3. Januar 1982</strong> in Münster das Licht der Welt. Damit zählt sie aktuell 39 Lenze und gehört dem Sternzeichen Steinbock an.</p>
               </div>
             </details>
 
-            <details class="bg-bg-card rounded-xl group">
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
               <summary class="flex items-center justify-between p-6 cursor-pointer">
-                <span class="font-semibold text-white">Ist <%= config.model.name %> eine echte Amateur-Darstellerin?</span>
+                <span class="font-semibold text-white" itemprop="name">Welchem Beruf ging sie vor ihrer jetzigen Karriere nach?</span>
                 <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </summary>
-              <div class="px-6 pb-6 text-text-secondary">
-                Ja, <%= config.model.name %> ist eine authentische Amateur-Darstellerin aus Deutschland, die ihre eigenen Inhalte produziert und auf MyDirtyHobby teilt.
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Ganze <strong>16 Jahre verbrachte sie als Zahnarzthelferin</strong> in ihrer Heimatstadt. Die Anstellung endete, als ihre Nebentätigkeit im Erotikbereich ans Licht kam.</p>
+              </div>
+            </details>
+
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white" itemprop="name">Mit welchen namhaften Produktionsfirmen arbeitet sie zusammen?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Ihr Portfolio liest sich wie das Who-is-Who der Branche: <strong>Hustler, Evil Angel, Brazzers, Jules Jordan, Naughty America sowie Hard X</strong> gehören zu ihren Auftraggebern. Hierzulande zählt Videorama zu ihren Partnern.</p>
+              </div>
+            </details>
+
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white" itemprop="name">Welche besonderen Ehrungen hat sie erhalten?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Zu den Höhepunkten zählen Moderationsaufgaben bei den XBIZ Awards 2019 sowie den AVN Awards 2020. Der Ritterschlag erfolgte <strong>2025 durch die Aufnahme in die prestigeträchtige AVN Hall of Fame</strong>.</p>
+              </div>
+            </details>
+
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white" itemprop="name">Führt Texas Patti eine Beziehung?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Sie lebt in einer festen Partnerschaft und ist mit <strong>Patrick Habig</strong> verheiratet. Gemeinsam haben sie ihren Lebensmittelpunkt in Deutschland.</p>
+              </div>
+            </details>
+
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white" itemprop="name">Welche Körpermaße hat Texas Patti?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Mit einer Körpergröße von <strong>1,70 m bei 58 kg</strong> besitzt sie eine sportlich-athletische Figur. Ihre Körbchengröße beträgt C. Charakteristisch sind ihre braunen Augen und das lange schwarze Haar.</p>
+              </div>
+            </details>
+
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white" itemprop="name">Wurde über Texas Patti eine TV-Dokumentation produziert?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">RTL2 sendete im Mai 2025 das vierteilige Format <strong>"Texas Patti – Mein Leben am Höhepunkt"</strong>. Die Serie beleuchtet sowohl berufliche als auch private Aspekte ihres Lebens.</p>
+              </div>
+            </details>
+
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white" itemprop="name">Hat Texas Patti Tattoos oder Piercings?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Ja, sie trägt <strong>mehrere Tattoos</strong> sowie <strong>Piercings am Bauchnabel und im Intimbereich</strong>.</p>
+              </div>
+            </details>
+
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white" itemprop="name">Wo kann ich Videos von <%= config.model.name %> sehen?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Alle exklusiven Videos von <%= config.model.name %> findest du auf MyDirtyHobby. Diese Seite bietet dir eine Vorschau und verlinkt direkt zu den vollständigen Videos auf der Plattform.</p>
+              </div>
+            </details>
+
+            <details class="bg-bg-card rounded-xl group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white" itemprop="name">Wie viele Videos hat <%= config.model.name %>?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text">Aktuell hat <%= config.model.name %> <%= totalVideos %> Videos auf MyDirtyHobby veröffentlicht. Neue Inhalte werden regelmäßig hinzugefügt.</p>
               </div>
             </details>
           </div>
