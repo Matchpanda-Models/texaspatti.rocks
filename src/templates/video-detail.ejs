@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="<%= config.site.language %>">
+<%- include('partials/head') %>
+
+<body class="min-h-screen">
+  <%- include('partials/age-gate') %>
+  <%- include('partials/header') %>
+
+  <main class="pt-20 md:pt-22">
+    <!-- Video Section -->
+    <section class="py-8 md:py-12">
+      <div class="container mx-auto px-4">
+        <!-- Breadcrumb -->
+        <nav class="mb-6" aria-label="Breadcrumb">
+          <ol class="flex items-center text-sm text-text-secondary flex-wrap">
+            <li><a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>" class="hover:text-primary transition-colors">Home</a></li>
+            <li class="mx-2">/</li>
+            <li><a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>videos/" class="hover:text-primary transition-colors">Videos</a></li>
+            <li class="mx-2">/</li>
+            <li class="text-white truncate max-w-[200px]"><%= video.title %></li>
+          </ol>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Main Content -->
+          <div class="lg:col-span-2">
+            <!-- Fake Player -->
+            <a href="<%= video.url %>" target="_blank" rel="noopener nofollow" class="block mb-6 relative aspect-video rounded-xl overflow-hidden group cursor-pointer">
+              <img
+                src="<%= video.thumbnail %>"
+                alt="<%= video.title %>"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onerror="this.src='https://via.placeholder.com/1280x720/262626/ffffff?text=Video'"
+              >
+              <!-- Overlay -->
+              <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
+                <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary/90 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-all duration-300 shadow-2xl shadow-primary/50">
+                  <svg class="w-10 h-10 md:w-12 md:h-12 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Duration -->
+              <% if (video.durationFormatted && video.durationFormatted !== '0:00') { %>
+              <span class="absolute bottom-4 right-4 px-3 py-1 bg-black/80 text-white text-sm font-medium rounded-md backdrop-blur-sm">
+                <%= video.durationFormatted %>
+              </span>
+              <% } %>
+
+              <!-- HD Badge -->
+              <% if (video.isHD) { %>
+              <span class="absolute top-4 left-4 px-3 py-1 bg-accent text-black text-sm font-bold rounded-md uppercase">
+                HD
+              </span>
+              <% } %>
+            </a>
+
+            <!-- Video Info -->
+            <div class="bg-bg-card rounded-xl p-6 mb-6">
+              <h1 class="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4">
+                <%= video.title %>
+              </h1>
+
+              <!-- Meta Stats -->
+              <div class="flex flex-wrap items-center gap-4 md:gap-6 text-text-secondary text-sm mb-6">
+                <% if (video.durationFormatted && video.durationFormatted !== '0:00') { %>
+                <span class="flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <%= video.durationFormatted %>
+                </span>
+                <% } %>
+                <span class="flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                  <%= video.dateFormatted %>
+                </span>
+              </div>
+
+              <!-- Description -->
+              <% if (video.description) { %>
+              <div class="prose prose-invert max-w-none mb-6">
+                <p class="text-text-secondary leading-relaxed">
+                  <%= video.description %>
+                </p>
+              </div>
+              <% } %>
+
+              <!-- Tags -->
+              <% if (video.tags && video.tags.length > 0) { %>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <% video.tags.forEach(function(tag) { %>
+                <span class="px-3 py-1 bg-bg-secondary text-text-secondary text-sm rounded-lg"><%= tag %></span>
+                <% }); %>
+              </div>
+              <% } %>
+
+              <!-- CTA Button -->
+              <a href="<%= video.url %>" target="_blank" rel="noopener nofollow" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 w-full sm:w-auto">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                <%= config.videoSettings.ctaButtonText %>
+              </a>
+            </div>
+
+            <!-- Model Info Card -->
+            <div class="bg-bg-card rounded-xl p-6">
+              <div class="flex items-center gap-4">
+                <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>" class="flex-shrink-0">
+                  <div class="w-16 h-16 rounded-full overflow-hidden ring-2 ring-primary/50">
+                    <img src="<%= (typeof basePath !== 'undefined' ? basePath : '') + (typeof profile !== 'undefined' && profile && profile.avatar ? profile.avatar.replace(/^\//, '') : config.model.avatar.replace(/^\//, '')) %>" alt="<%= config.model.name %>" class="w-full h-full object-cover">
+                  </div>
+                </a>
+                <div class="flex-grow min-w-0">
+                  <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>" class="text-lg font-semibold text-white hover:text-primary transition-colors">
+                    <%= config.model.name %>
+                  </a>
+                  <p class="text-text-secondary text-sm truncate">
+                    <%= config.model.tagline %>
+                  </p>
+                </div>
+                <a href="<%= profileUrl %>" target="_blank" rel="noopener nofollow" class="px-4 py-2 bg-bg-secondary hover:bg-primary text-white text-sm font-semibold rounded-xl border border-zinc-700 hover:border-primary transition-all flex-shrink-0">
+                  Folgen
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar - Related Videos -->
+          <div class="lg:col-span-1">
+            <h2 class="text-xl font-bold text-white mb-6">Weitere Videos</h2>
+
+            <div class="space-y-4">
+              <% relatedVideos.forEach(function(relVideo) { %>
+              <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>videos/<%= relVideo.slug %>/" class="flex gap-4 group">
+                <div class="flex-shrink-0 w-40 relative rounded-lg overflow-hidden">
+                  <img
+                    src="<%= relVideo.thumbnail %>"
+                    alt="<%= relVideo.title %>"
+                    class="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  >
+                  <span class="absolute bottom-1 right-1 px-1.5 py-0.5 bg-black/80 text-white text-xs rounded">
+                    <%= relVideo.durationFormatted %>
+                  </span>
+                </div>
+                <div class="flex-grow min-w-0">
+                  <h3 class="text-white text-sm font-medium line-clamp-2 group-hover:text-primary transition-colors">
+                    <%= relVideo.title %>
+                  </h3>
+                  <p class="text-text-secondary text-xs mt-1">
+                    <%= relVideo.dateFormatted %>
+                  </p>
+                </div>
+              </a>
+              <% }); %>
+            </div>
+
+            <!-- View All CTA -->
+            <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>videos/" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-bg-card hover:bg-bg-secondary text-white font-semibold rounded-xl border border-zinc-700 hover:border-primary transition-all duration-300 w-full mt-6">
+              Alle Videos ansehen
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <!-- Schema.org Breadcrumb -->
+  <script type="application/ld+json">
+    <%- JSON.stringify(generateSchema('breadcrumb', [
+      { name: 'Home', url: config.site.url + '/' },
+      { name: 'Videos', url: `${config.site.url}/videos/` },
+      { name: video.title, url: canonicalUrl }
+    ])) %>
+  </script>
+</body>
+</html>

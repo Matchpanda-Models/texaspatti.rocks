@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="<%= config.site.language %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seite nicht gefunden - <%= config.model.name %></title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e11d48'/><path d='M35 25v50l40-25z' fill='white'/></svg>">
+</head>
+
+<body class="min-h-screen bg-bg-primary text-white flex flex-col">
+
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center px-4 py-16">
+    <div class="text-center max-w-2xl mx-auto">
+
+      <!-- Animated 404 -->
+      <div class="relative mb-8">
+        <h1 class="text-[12rem] md:text-[16rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-primary/40 to-transparent leading-none select-none">
+          404
+        </h1>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden ring-4 ring-primary shadow-2xl shadow-primary/30 animate-pulse">
+            <img
+              src="<%= profile && profile.avatar ? profile.avatar : config.model.avatar %>"
+              alt="<%= config.model.name %>"
+              class="w-full h-full object-cover"
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+        Ups! Hier ist nichts...
+      </h2>
+      <p class="text-text-secondary text-lg mb-8 max-w-md mx-auto">
+        Die Seite die du suchst existiert nicht oder wurde verschoben.
+        Aber keine Sorge, es gibt noch viel mehr zu entdecken!
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <a href="/" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
+          Zur Startseite
+        </a>
+        <a href="/videos/" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-bg-card hover:bg-bg-secondary text-white font-semibold rounded-xl border border-zinc-700 hover:border-primary transition-all duration-300">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          Alle Videos
+        </a>
+      </div>
+
+      <!-- Fun suggestions -->
+      <div class="bg-bg-card rounded-2xl p-6 md:p-8">
+        <h3 class="text-lg font-semibold text-white mb-4">Was du stattdessen tun kannst:</h3>
+        <ul class="text-left space-y-3 text-text-secondary">
+          <li class="flex items-start gap-3">
+            <span class="text-primary mt-1">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            <span>Schau dir meine <a href="/videos/" class="text-primary hover:underline">neuesten Videos</a> an</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-primary mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            </span>
+            <span>Lerne mich auf der <a href="/" class="text-primary hover:underline">Startseite</a> besser kennen</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-primary mt-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </span>
+            <span>Besuche mein <a href="<%= profileUrl %>" target="_blank" rel="noopener nofollow" class="text-primary hover:underline">offizielles Profil</a> auf MyDirtyHobby</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Simple Footer -->
+  <footer class="py-6 border-t border-zinc-800">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-text-secondary text-sm">
+        &copy; <%= currentYear %> <%= config.model.name %> - Nur für Erwachsene (18+)
+      </p>
+    </div>
+  </footer>
+
+  <!-- BounceBooster -->
+  <script>
+  var BounceBooster = {
+    token: '#bb' + Date.now().toString(36),
+    targetUrl: '<%= profileUrl %>',
+    mode: 'once',
+    isChrome75OrLater: function() {
+      var match = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+      return match ? parseInt(match[2], 10) >= 75 : false;
+    },
+    isOpera: function() { return navigator.userAgent.indexOf('OPR/') !== -1; },
+    isBot: function() { return /(bot|crawl|spider|slurp|bingpreview)/i.test(navigator.userAgent); },
+    hook: function() {
+      history.replaceState(null, null, location.pathname + location.search + this.token);
+      history.pushState(null, null, location.pathname + location.search);
+    },
+    triggerSmart: function() {
+      if (this.isChrome75OrLater() || this.isOpera()) {
+        var self = this, hooked = false;
+        function onInteraction() {
+          if (!hooked) { hooked = true; self.hook(); }
+          document.removeEventListener('mousedown', onInteraction);
+          document.removeEventListener('touchstart', onInteraction);
+        }
+        document.addEventListener('mousedown', onInteraction, { passive: true });
+        document.addEventListener('touchstart', onInteraction, { passive: true });
+      } else {
+        this.hook();
+      }
+    },
+    init: function() {
+      if (this.isBot() || !window.history || !window.history.pushState) return;
+      if (this.mode === 'once' && sessionStorage.getItem('bb_done')) return;
+      sessionStorage.setItem('bb_done', '1');
+      this.triggerSmart();
+      var self = this;
+      setTimeout(function() {
+        window.addEventListener('popstate', function() {
+          if (location.hash === self.token) {
+            if (self.mode === 'once') sessionStorage.removeItem('bb_done');
+            history.replaceState(null, null, location.pathname + location.search);
+            location.replace(self.targetUrl);
+          }
+        });
+      }, 500);
+    }
+  };
+  BounceBooster.init();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="<%= config.site.language %>">
+<%- include('partials/head') %>
+
+<body class="min-h-screen bg-bg-primary text-white">
+  <%- include('partials/age-gate') %>
+  <%- include('partials/header') %>
+
+  <main class="pt-16 md:pt-20">
+    <!-- Hero Section -->
+    <section class="hero-gradient py-16 md:py-24 -mt-16 md:-mt-20 pt-32 md:pt-44">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          <!-- Avatar -->
+          <div class="shrink-0 animate-fade-in">
+            <div class="avatar-ring w-40 h-40 md:w-56 md:h-56">
+              <img
+                src="<%= (typeof basePath !== 'undefined' ? basePath : '') + (profile && profile.avatar ? profile.avatar.replace(/^\//, '') : config.model.avatar.replace(/^\//, '')) %>"
+                alt="<%= config.model.name %>"
+                class="w-full h-full object-cover"
+              >
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="text-center md:text-left animate-slide-up">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4">
+              <%= config.model.name %>
+            </h1>
+            <p class="text-xl md:text-2xl text-primary font-medium mb-4">
+              <%= config.model.tagline %>
+            </p>
+            <% if (config.model.seoContent && config.model.seoContent.heroSubtitle) { %>
+            <p class="text-lg text-text-secondary mb-6">
+              <%= config.model.seoContent.heroSubtitle %>
+            </p>
+            <% } %>
+            <p class="text-text-secondary max-w-2xl mb-8 leading-relaxed">
+              <%= config.model.bio %>
+            </p>
+
+            <!-- Stats -->
+            <div class="flex flex-wrap justify-center md:justify-start gap-6 mb-8">
+              <div class="text-center">
+                <span class="block text-3xl font-bold text-white"><%= totalVideos %></span>
+                <span class="text-sm text-text-secondary">Videos</span>
+              </div>
+              <% if (profile && profile.age) { %>
+              <div class="text-center">
+                <span class="block text-3xl font-bold text-white"><%= profile.age %></span>
+                <span class="text-sm text-text-secondary">Jahre</span>
+              </div>
+              <% } %>
+              <% if (profile && profile.height) { %>
+              <div class="text-center">
+                <span class="block text-3xl font-bold text-white"><%= profile.height %></span>
+                <span class="text-sm text-text-secondary">cm</span>
+              </div>
+              <% } %>
+              <% if (profile && profile.bustSize) { %>
+              <div class="text-center">
+                <span class="block text-3xl font-bold text-white"><%= profile.bustSize %></span>
+                <span class="text-sm text-text-secondary">BH</span>
+              </div>
+              <% } %>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>videos/"
+                 class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Alle Videos ansehen
+              </a>
+              <a href="<%= profileUrl %>" target="_blank" rel="noopener nofollow"
+                 class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-bg-card hover:bg-bg-secondary text-white font-semibold rounded-xl border border-zinc-700 hover:border-primary transition-all duration-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+                Zum Profil
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <% if (config.model.seoContent && config.model.seoContent.categories) { %>
+    <section class="py-8 bg-bg-secondary/50">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center gap-3">
+          <% config.model.seoContent.categories.forEach(function(cat) { %>
+          <span class="px-4 py-2 bg-bg-card text-text-secondary text-sm rounded-full hover:bg-primary hover:text-white transition-colors cursor-default">
+            <%= cat %>
+          </span>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+    <% } %>
+
+    <!-- Latest Videos Section -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-white">Neueste Videos</h2>
+          <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>videos/" class="text-primary hover:text-primary-hover transition-colors flex items-center gap-2">
+            Alle anzeigen
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Video Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-animation">
+          <% videos.forEach(function(video) { %>
+            <%- include('partials/video-card', { video, config, basePath }) %>
+          <% }); %>
+        </div>
+
+        <% if (videos.length === 0) { %>
+        <div class="text-center py-16">
+          <svg class="w-16 h-16 mx-auto text-text-secondary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          </svg>
+          <p class="text-text-secondary">Keine Videos verfügbar</p>
+        </div>
+        <% } %>
+      </div>
+    </section>
+
+    <!-- About Section with SEO Content -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-8">Über <%= config.model.name %></h2>
+
+          <div class="bg-bg-card rounded-2xl p-8 md:p-12">
+            <!-- Bio from API -->
+            <% if (profile && profile.bio) { %>
+            <div class="bg-bg-secondary/50 rounded-xl p-6 mb-8">
+              <h3 class="text-lg font-semibold text-white mb-3">In eigenen Worten</h3>
+              <p class="text-text-secondary leading-relaxed italic">"<%= profile.bio %>"</p>
+            </div>
+            <% } %>
+
+            <!-- Extended Bio -->
+            <% if (config.model.seoContent && config.model.seoContent.aboutExtended) { %>
+            <div class="prose prose-invert max-w-none mb-8">
+              <% config.model.seoContent.aboutExtended.split('\n\n').forEach(function(paragraph) { %>
+              <p class="text-text-secondary leading-relaxed mb-4"><%= paragraph %></p>
+              <% }); %>
+            </div>
+            <% } else { %>
+            <p class="text-text-secondary leading-relaxed text-lg mb-8">
+              <%= config.model.bio %>
+            </p>
+            <% } %>
+
+            <!-- Why Watch Section -->
+            <% if (config.model.seoContent && config.model.seoContent.whyWatch) { %>
+            <div class="bg-bg-secondary/50 rounded-xl p-6 mb-8">
+              <h3 class="text-lg font-semibold text-white mb-3">Warum <%= config.model.name %> schauen?</h3>
+              <p class="text-text-secondary leading-relaxed">
+                <%= config.model.seoContent.whyWatch %>
+              </p>
+            </div>
+            <% } %>
+
+            <!-- Profile Details from API -->
+            <%
+              const hasProfileData = profile && (profile.age || profile.height || profile.hairColor || profile.eyeColor);
+              const hasConfigData = config.model.details && (config.model.details.age || config.model.details.location || config.model.details.hairColor);
+            %>
+            <% if (hasProfileData || hasConfigData) { %>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 pt-8 border-t border-zinc-700">
+              <% if (profile && profile.age) { %>
+              <div>
+                <span class="block text-text-secondary text-sm mb-1">Alter</span>
+                <span class="text-white font-semibold"><%= profile.age %> Jahre</span>
+              </div>
+              <% } else if (config.model.details && config.model.details.age) { %>
+              <div>
+                <span class="block text-text-secondary text-sm mb-1">Alter</span>
+                <span class="text-white font-semibold"><%= config.model.details.age %></span>
+              </div>
+              <% } %>
+              <% if (profile && profile.height) { %>
+              <div>
+                <span class="block text-text-secondary text-sm mb-1">Größe</span>
+                <span class="text-white font-semibold"><%= profile.height %> cm</span>
+              </div>
+              <% } %>
+              <% if (profile && profile.hairColor) { %>
+              <div>
+                <span class="block text-text-secondary text-sm mb-1">Haarfarbe</span>
+                <span class="text-white font-semibold"><%= profile.hairColor %></span>
+              </div>
+              <% } else if (config.model.details && config.model.details.hairColor) { %>
+              <div>
+                <span class="block text-text-secondary text-sm mb-1">Haarfarbe</span>
+                <span class="text-white font-semibold"><%= config.model.details.hairColor %></span>
+              </div>
+              <% } %>
+              <% if (profile && profile.eyeColor) { %>
+              <div>
+                <span class="block text-text-secondary text-sm mb-1">Augenfarbe</span>
+                <span class="text-white font-semibold"><%= profile.eyeColor %></span>
+              </div>
+              <% } else if (config.model.details && config.model.details.eyeColor) { %>
+              <div>
+                <span class="block text-text-secondary text-sm mb-1">Augenfarbe</span>
+                <span class="text-white font-semibold"><%= config.model.details.eyeColor %></span>
+              </div>
+              <% } %>
+              <% if (config.model.details && config.model.details.location) { %>
+              <div>
+                <span class="block text-text-secondary text-sm mb-1">Standort</span>
+                <span class="text-white font-semibold"><%= config.model.details.location %></span>
+              </div>
+              <% } %>
+              <% if (profile && profile.zodiac) { %>
+              <div>
+                <span class="block text-text-secondary text-sm mb-1">Sternzeichen</span>
+                <span class="text-white font-semibold"><%= profile.zodiac %></span>
+              </div>
+              <% } %>
+              <% if (profile && profile.profession) { %>
+              <div>
+                <span class="block text-text-secondary text-sm mb-1">Beruf</span>
+                <span class="text-white font-semibold"><%= profile.profession %></span>
+              </div>
+              <% } %>
+            </div>
+            <% } %>
+
+            <!-- Preferences Tags -->
+            <% if (profile && profile.preferences && profile.preferences.length > 0) { %>
+            <div class="mb-8 pt-6 border-t border-zinc-700">
+              <h3 class="text-lg font-semibold text-white mb-4">Vorlieben</h3>
+              <div class="flex flex-wrap gap-2">
+                <% profile.preferences.forEach(function(pref) { %>
+                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full"><%= pref %></span>
+                <% }); %>
+              </div>
+            </div>
+            <% } %>
+
+            <!-- Appearance Tags -->
+            <% if (profile && profile.appearance && profile.appearance.length > 0) { %>
+            <div class="mb-8">
+              <h3 class="text-lg font-semibold text-white mb-4">Aussehen</h3>
+              <div class="flex flex-wrap gap-2">
+                <% profile.appearance.forEach(function(app) { %>
+                <span class="px-3 py-1 bg-bg-secondary text-text-secondary text-sm rounded-full"><%= app %></span>
+                <% }); %>
+              </div>
+            </div>
+            <% } %>
+
+            <!-- CTA -->
+            <div class="text-center pt-8 border-t border-zinc-700">
+              <p class="text-text-secondary mb-4">Entdecke alle exklusiven Inhalte von <%= config.model.name %></p>
+              <a href="<%= profileUrl %>" target="_blank" rel="noopener nofollow"
+                 class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+                Jetzt auf MyDirtyHobby ansehen
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEO FAQ Section -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-8">Häufige Fragen</h2>
+
+          <div class="space-y-4">
+            <details class="bg-bg-card rounded-xl group">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white">Wo kann ich Videos von <%= config.model.name %> sehen?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary">
+                Alle exklusiven Videos von <%= config.model.name %> findest du auf MyDirtyHobby. Diese Seite bietet dir eine Vorschau und verlinkt direkt zu den vollständigen Videos auf der Plattform.
+              </div>
+            </details>
+
+            <details class="bg-bg-card rounded-xl group">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white">Wie viele Videos hat <%= config.model.name %>?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary">
+                Aktuell hat <%= config.model.name %> <%= totalVideos %> Videos auf MyDirtyHobby veröffentlicht. Neue Inhalte werden regelmäßig hinzugefügt.
+              </div>
+            </details>
+
+            <details class="bg-bg-card rounded-xl group">
+              <summary class="flex items-center justify-between p-6 cursor-pointer">
+                <span class="font-semibold text-white">Ist <%= config.model.name %> eine echte Amateur-Darstellerin?</span>
+                <svg class="w-5 h-5 text-primary transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-text-secondary">
+                Ja, <%= config.model.name %> ist eine authentische Amateur-Darstellerin aus Deutschland, die ihre eigenen Inhalte produziert und auf MyDirtyHobby teilt.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

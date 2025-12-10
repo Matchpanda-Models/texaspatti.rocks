@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="<%= config.site.language %>">
+<%- include('partials/head') %>
+
+<body class="min-h-screen">
+  <%- include('partials/header') %>
+
+  <main class="pt-20 md:pt-22">
+    <section class="py-12 md:py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+          <!-- Breadcrumb -->
+          <nav class="mb-6" aria-label="Breadcrumb">
+            <ol class="flex items-center text-sm text-text-secondary">
+              <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+              <li class="mx-2">/</li>
+              <li class="text-white">Datenschutz</li>
+            </ol>
+          </nav>
+
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-8">Datenschutzerkl&auml;rung</h1>
+
+          <div class="bg-bg-card rounded-xl p-6 md:p-8 prose prose-invert max-w-none space-y-6">
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">1. Datenschutz auf einen Blick</h2>
+              <h3 class="text-lg font-semibold text-white mb-2">Allgemeine Hinweise</h3>
+              <p class="text-text-secondary">
+                Die folgenden Hinweise geben einen einfachen &Uuml;berblick dar&uuml;ber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie pers&ouml;nlich identifiziert werden k&ouml;nnen.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">2. Datenerfassung auf dieser Website</h2>
+
+              <h3 class="text-lg font-semibold text-white mb-2">Wer ist verantwortlich f&uuml;r die Datenerfassung auf dieser Website?</h3>
+              <p class="text-text-secondary mb-4">
+                Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten k&ouml;nnen Sie dem Impressum dieser Website entnehmen.
+              </p>
+
+              <h3 class="text-lg font-semibold text-white mb-2">Wie erfassen wir Ihre Daten?</h3>
+              <p class="text-text-secondary mb-4">
+                Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben.
+              </p>
+              <p class="text-text-secondary mb-4">
+                Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">3. Hosting</h2>
+              <p class="text-text-secondary">
+                Diese Website wird bei einem externen Dienstleister gehostet (Hoster). Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">4. Allgemeine Hinweise und Pflichtinformationen</h2>
+
+              <h3 class="text-lg font-semibold text-white mb-2">Datenschutz</h3>
+              <p class="text-text-secondary mb-4">
+                Die Betreiber dieser Seiten nehmen den Schutz Ihrer pers&ouml;nlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerkl&auml;rung.
+              </p>
+
+              <h3 class="text-lg font-semibold text-white mb-2">Hinweis zur verantwortlichen Stelle</h3>
+              <p class="text-text-secondary mb-4">
+                Die verantwortliche Stelle f&uuml;r die Datenverarbeitung auf dieser Website ist:<br><br>
+                [Name / Firma]<br>
+                [Adresse]<br>
+                E-Mail: [E-Mail]
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">5. Cookies</h2>
+              <p class="text-text-secondary">
+                Diese Website verwendet Cookies. Cookies sind kleine Textdateien, die auf Ihrem Rechner abgelegt werden und die Ihr Browser speichert. Die meisten der von uns verwendeten Cookies sind so genannte "Session-Cookies". Sie werden nach Ende Ihres Besuchs automatisch gel&ouml;scht.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">6. Ihre Rechte</h2>
+              <p class="text-text-secondary">
+                Sie haben jederzeit das Recht, unentgeltlich Auskunft &uuml;ber Herkunft, Empf&auml;nger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben au&szlig;erdem ein Recht, die Berichtigung oder L&ouml;schung dieser Daten zu verlangen.
+              </p>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

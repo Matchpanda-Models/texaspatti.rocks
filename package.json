@@ -1,0 +1,25 @@
+{
+  "name": "model-page",
+  "version": "1.0.0",
+  "description": "Static model page generator with video feed integration",
+  "type": "module",
+  "scripts": {
+    "fetch-feed": "node scripts/fetch-feed.js",
+    "build:css": "npx @tailwindcss/cli -i ./src/styles/input.css -o ./dist/css/style.css --minify",
+    "build:html": "node scripts/build.js",
+    "build": "npm run fetch-feed && npm run build:css && npm run build:html",
+    "watch:css": "npx @tailwindcss/cli -i ./src/styles/input.css -o ./dist/css/style.css --watch",
+    "dev": "npm run build && npx live-server dist",
+    "new-model": "node scripts/create-model.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "node-fetch": "^3.3.2",
+    "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "live-server": "^1.2.2"
+  }
+}

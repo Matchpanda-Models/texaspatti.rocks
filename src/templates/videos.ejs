@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="<%= config.site.language %>">
+<%- include('partials/head') %>
+
+<body class="min-h-screen bg-bg-primary text-white">
+  <%- include('partials/age-gate') %>
+  <%- include('partials/header') %>
+
+  <main class="pt-16 md:pt-20">
+    <!-- Page Header -->
+    <section class="py-12 md:py-16 bg-gradient-to-b from-bg-secondary to-bg-primary">
+      <div class="container mx-auto px-4">
+        <!-- Breadcrumb -->
+        <nav class="mb-6" aria-label="Breadcrumb">
+          <ol class="flex items-center text-sm text-text-secondary">
+            <li><a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>" class="hover:text-primary transition-colors">Home</a></li>
+            <li class="mx-2">/</li>
+            <li class="text-white">Videos</li>
+          </ol>
+        </nav>
+
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4">
+          Alle Videos
+        </h1>
+        <p class="text-text-secondary text-lg">
+          <%= totalVideos %> exklusive Videos von <%= config.model.name %>
+        </p>
+      </div>
+    </section>
+
+    <!-- Search & Filter Bar -->
+    <section class="py-4 bg-bg-secondary border-b border-zinc-800 sticky top-16 md:top-20 z-30">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-stretch md:items-center gap-4">
+          <!-- Search Input -->
+          <div class="relative flex-grow max-w-md">
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input
+              type="text"
+              id="video-search"
+              placeholder="Videos durchsuchen..."
+              class="w-full bg-bg-card text-white text-sm rounded-xl pl-10 pr-4 py-3 border border-zinc-700 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+            >
+            <button id="clear-search" class="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-white transition-colors hidden">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <!-- Results Count -->
+            <span class="text-text-secondary text-sm whitespace-nowrap">
+              <span id="results-count" class="text-white font-semibold"><%= videos.length %></span> Videos
+            </span>
+
+            <!-- Sort Dropdown -->
+            <div class="relative">
+              <select id="video-sort" class="appearance-none bg-bg-card text-white text-sm rounded-xl pl-4 pr-10 py-3 border border-zinc-700 focus:border-primary focus:outline-none cursor-pointer">
+                <option value="newest">Neueste zuerst</option>
+                <option value="oldest">Älteste zuerst</option>
+                <option value="title-az">Titel A-Z</option>
+                <option value="title-za">Titel Z-A</option>
+                <option value="duration-long">Längste zuerst</option>
+                <option value="duration-short">Kürzeste zuerst</option>
+              </select>
+              <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Filter -->
+        <%
+          // Collect all unique tags from videos
+          const allTags = new Set();
+          videos.forEach(v => {
+            if (v.tags && v.tags.length) {
+              v.tags.forEach(t => allTags.add(t));
+            }
+          });
+          const uniqueTags = Array.from(allTags).slice(0, 10); // Limit to 10 tags
+        %>
+        <% if (uniqueTags.length > 0) { %>
+        <div class="flex flex-wrap gap-2 mt-4">
+          <button class="filter-tag active px-3 py-1.5 bg-primary text-white text-sm rounded-full transition-all" data-tag="all">
+            Alle
+          </button>
+          <% uniqueTags.forEach(function(tag) { %>
+          <button class="filter-tag px-3 py-1.5 bg-bg-card text-text-secondary text-sm rounded-full border border-zinc-700 hover:border-primary hover:text-white transition-all" data-tag="<%= tag %>">
+            <%= tag %>
+          </button>
+          <% }); %>
+        </div>
+        <% } %>
+      </div>
+    </section>
+
+    <!-- Videos Grid -->
+    <section class="py-12">
+      <div class="container mx-auto px-4">
+        <div id="videos-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <% videos.forEach(function(video) { %>
+          <article class="video-item group cursor-pointer bg-bg-card rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1"
+                   data-title="<%= video.title.toLowerCase() %>"
+                   data-date="<%= video.date %>"
+                   data-duration="<%= video.duration %>"
+                   data-tags="<%= video.tags ? video.tags.join(',').toLowerCase() : '' %>">
+            <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>videos/<%= video.slug %>/" class="block">
+              <!-- Thumbnail -->
+              <div class="relative aspect-video overflow-hidden">
+                <img
+                  src="<%= video.thumbnail %>"
+                  alt="<%= video.title %>"
+                  loading="lazy"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  onerror="this.src='https://via.placeholder.com/640x360/262626/ffffff?text=Video'"
+                >
+
+                <!-- Gradient Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                <!-- Play Button Overlay -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/90 flex items-center justify-center transform scale-75 group-hover:scale-100 transition-all duration-300 shadow-xl shadow-primary/50">
+                    <svg class="w-7 h-7 md:w-8 md:h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Date Badge (bottom-left) -->
+                <% if (video.dateFormatted) { %>
+                <span class="absolute bottom-2 left-2 px-2 py-1 bg-black/80 text-white text-xs font-medium rounded-md backdrop-blur-sm">
+                  <%= video.dateFormatted %>
+                </span>
+                <% } %>
+
+                <!-- Duration Badge (bottom-right) -->
+                <% if (video.durationFormatted && video.durationFormatted !== '0:00') { %>
+                <span class="absolute bottom-2 right-2 px-2 py-1 bg-black/80 text-white text-xs font-medium rounded-md backdrop-blur-sm">
+                  <%= video.durationFormatted %>
+                </span>
+                <% } %>
+
+                <!-- HD Badge -->
+                <% if (video.isHD) { %>
+                <span class="absolute top-2 left-2 px-2 py-0.5 bg-accent text-black text-xs font-bold rounded-md uppercase">
+                  HD
+                </span>
+                <% } %>
+
+                <!-- New Badge -->
+                <% if (video.isNew) { %>
+                <span class="absolute top-2 right-2 px-2 py-0.5 bg-primary text-white text-xs font-bold rounded-md uppercase animate-pulse">
+                  Neu
+                </span>
+                <% } %>
+              </div>
+
+              <!-- Content -->
+              <div class="p-4">
+                <h3 class="text-white font-semibold text-sm md:text-base line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                  <%= video.title %>
+                </h3>
+
+                <!-- Tags -->
+                <% if (video.tags && video.tags.length > 0) { %>
+                <div class="flex flex-wrap gap-1.5">
+                  <% video.tags.slice(0, 3).forEach(function(tag) { %>
+                  <span class="inline-block px-2 py-0.5 bg-bg-secondary text-text-secondary text-xs rounded"><%= tag %></span>
+                  <% }); %>
+                </div>
+                <% } %>
+              </div>
+            </a>
+          </article>
+          <% }); %>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="no-results" class="text-center py-16 hidden">
+          <svg class="w-20 h-20 mx-auto text-text-secondary mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <h3 class="text-xl font-semibold text-white mb-2">Keine Videos gefunden</h3>
+          <p class="text-text-secondary mb-6">Versuche einen anderen Suchbegriff oder Filter.</p>
+          <button id="reset-filters" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-all">
+            Filter zurücksetzen
+          </button>
+        </div>
+
+        <% if (videos.length === 0) { %>
+        <div class="text-center py-16">
+          <svg class="w-20 h-20 mx-auto text-text-secondary mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          </svg>
+          <h3 class="text-xl font-semibold text-white mb-2">Keine Videos verfügbar</h3>
+          <p class="text-text-secondary mb-6">Momentan sind keine Videos verfügbar.</p>
+          <a href="<%= profileUrl %>" target="_blank" rel="noopener nofollow" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-all">
+            Zum Profil
+          </a>
+        </div>
+        <% } %>
+
+        <!-- CTA -->
+        <% if (videos.length > 0) { %>
+        <div class="text-center mt-12">
+          <a href="<%= profileUrl %>" target="_blank" rel="noopener nofollow" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+            Weitere Videos auf MyDirtyHobby
+          </a>
+        </div>
+        <% } %>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <!-- Schema.org Breadcrumb -->
+  <script type="application/ld+json">
+    <%- JSON.stringify(generateSchema('breadcrumb', [
+      { name: 'Home', url: config.site.url + '/' },
+      { name: 'Videos', url: `${config.site.url}/videos/` }
+    ])) %>
+  </script>
+
+  <!-- Search, Sort & Filter Script -->
+  <script>
+    (function() {
+      const searchInput = document.getElementById('video-search');
+      const clearBtn = document.getElementById('clear-search');
+      const sortSelect = document.getElementById('video-sort');
+      const videosGrid = document.getElementById('videos-grid');
+      const resultsCount = document.getElementById('results-count');
+      const noResults = document.getElementById('no-results');
+      const resetBtn = document.getElementById('reset-filters');
+      const filterTags = document.querySelectorAll('.filter-tag');
+
+      let currentTag = 'all';
+      let currentSearch = '';
+
+      // Get all video items
+      const videoItems = Array.from(document.querySelectorAll('.video-item'));
+
+      // Search functionality
+      searchInput.addEventListener('input', function(e) {
+        currentSearch = e.target.value.toLowerCase().trim();
+        clearBtn.classList.toggle('hidden', !currentSearch);
+        filterAndSort();
+      });
+
+      // Clear search
+      clearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        currentSearch = '';
+        clearBtn.classList.add('hidden');
+        filterAndSort();
+      });
+
+      // Sort functionality
+      sortSelect.addEventListener('change', function() {
+        filterAndSort();
+      });
+
+      // Tag filter functionality
+      filterTags.forEach(function(tag) {
+        tag.addEventListener('click', function() {
+          filterTags.forEach(t => {
+            t.classList.remove('active', 'bg-primary', 'text-white');
+            t.classList.add('bg-bg-card', 'text-text-secondary', 'border', 'border-zinc-700');
+          });
+          this.classList.add('active', 'bg-primary', 'text-white');
+          this.classList.remove('bg-bg-card', 'text-text-secondary', 'border', 'border-zinc-700');
+          currentTag = this.dataset.tag;
+          filterAndSort();
+        });
+      });
+
+      // Reset filters
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          searchInput.value = '';
+          currentSearch = '';
+          currentTag = 'all';
+          sortSelect.value = 'newest';
+          clearBtn.classList.add('hidden');
+          filterTags.forEach(t => {
+            t.classList.remove('active', 'bg-primary', 'text-white');
+            t.classList.add('bg-bg-card', 'text-text-secondary', 'border', 'border-zinc-700');
+          });
+          const allTag = document.querySelector('.filter-tag[data-tag="all"]');
+          if (allTag) {
+            allTag.classList.add('active', 'bg-primary', 'text-white');
+            allTag.classList.remove('bg-bg-card', 'text-text-secondary', 'border', 'border-zinc-700');
+          }
+          filterAndSort();
+        });
+      }
+
+      function filterAndSort() {
+        // Filter
+        let filtered = videoItems.filter(function(item) {
+          const title = item.dataset.title || '';
+          const tags = item.dataset.tags || '';
+
+          // Search filter
+          const matchesSearch = !currentSearch || title.includes(currentSearch) || tags.includes(currentSearch);
+
+          // Tag filter
+          const matchesTag = currentTag === 'all' || tags.toLowerCase().includes(currentTag.toLowerCase());
+
+          return matchesSearch && matchesTag;
+        });
+
+        // Sort
+        const sortValue = sortSelect.value;
+        filtered.sort(function(a, b) {
+          switch(sortValue) {
+            case 'newest':
+              return new Date(b.dataset.date) - new Date(a.dataset.date);
+            case 'oldest':
+              return new Date(a.dataset.date) - new Date(b.dataset.date);
+            case 'title-az':
+              return a.dataset.title.localeCompare(b.dataset.title);
+            case 'title-za':
+              return b.dataset.title.localeCompare(a.dataset.title);
+            case 'duration-long':
+              return parseInt(b.dataset.duration) - parseInt(a.dataset.duration);
+            case 'duration-short':
+              return parseInt(a.dataset.duration) - parseInt(b.dataset.duration);
+            default:
+              return 0;
+          }
+        });
+
+        // Update DOM
+        videoItems.forEach(function(item) {
+          item.style.display = 'none';
+          item.remove();
+        });
+
+        filtered.forEach(function(item) {
+          item.style.display = '';
+          videosGrid.appendChild(item);
+        });
+
+        // Update count
+        resultsCount.textContent = filtered.length;
+
+        // Show/hide no results message
+        if (filtered.length === 0 && videoItems.length > 0) {
+          noResults.classList.remove('hidden');
+          videosGrid.classList.add('hidden');
+        } else {
+          noResults.classList.add('hidden');
+          videosGrid.classList.remove('hidden');
+        }
+      }
+
+      // Initial sort (newest first is default from API, but ensure it)
+      filterAndSort();
+    })();
+  </script>
+</body>
+</html>

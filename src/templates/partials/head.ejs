@@ -1,0 +1,207 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary Meta Tags -->
+  <title><%= pageTitle %></title>
+  <meta name="title" content="<%= pageTitle %>">
+  <meta name="description" content="<%= pageDescription %>">
+  <meta name="keywords" content="<%= config.seo.keywords.join(', ') %><%= config.model.seoContent ? ', ' + config.model.seoContent.metaKeywords.join(', ') : '' %>">
+  <meta name="author" content="<%= config.model.name %>">
+  <meta name="robots" content="index, follow">
+
+  <!-- Age Restriction -->
+  <% if (config.seo.isAdultContent) { %>
+  <meta name="rating" content="adult">
+  <meta name="RATING" content="RTA-5042-1996-1400-1577-RTA">
+  <% } %>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="<%= canonicalUrl %>">
+
+  <!-- Alternate Languages -->
+  <link rel="alternate" hreflang="<%= config.site.language %>" href="<%= canonicalUrl %>">
+  <link rel="alternate" hreflang="x-default" href="<%= canonicalUrl %>">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="<%= typeof video !== 'undefined' ? 'video.other' : 'website' %>">
+  <meta property="og:url" content="<%= canonicalUrl %>">
+  <meta property="og:title" content="<%= pageTitle %>">
+  <meta property="og:description" content="<%= pageDescription %>">
+  <meta property="og:image" content="<%= typeof video !== 'undefined' ? video.thumbnail : config.site.url + config.seo.ogImage %>">
+  <meta property="og:site_name" content="<%= config.site.name %>">
+  <meta property="og:locale" content="<%= config.site.locale %>">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="<%= config.seo.twitterCard %>">
+  <meta name="twitter:url" content="<%= canonicalUrl %>">
+  <meta name="twitter:title" content="<%= pageTitle %>">
+  <meta name="twitter:description" content="<%= pageDescription %>">
+  <meta name="twitter:image" content="<%= typeof video !== 'undefined' ? video.thumbnail : config.site.url + config.seo.ogImage %>">
+
+  <!-- Generic SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e11d48'/><path d='M35 25v50l40-25z' fill='white'/></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="<%= typeof basePath !== 'undefined' ? basePath : '' %>css/style.css">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+    <%- JSON.stringify(generateSchema('website', null)) %>
+  </script>
+  <script type="application/ld+json">
+    <%- JSON.stringify(generateSchema('person', { profile: typeof profile !== 'undefined' ? profile : null, avatarUrl: typeof profile !== 'undefined' && profile ? profile.avatar : null })) %>
+  </script>
+  <% if (typeof video !== 'undefined') { %>
+  <script type="application/ld+json">
+    <%- JSON.stringify(generateSchema('video', video)) %>
+  </script>
+  <% } %>
+  <% if (typeof videos !== 'undefined' && videos.length > 0 && typeof video === 'undefined') { %>
+  <script type="application/ld+json">
+    <%- JSON.stringify(generateSchema('videoList', { videos: videos, totalVideos: typeof totalVideos !== 'undefined' ? totalVideos : videos.length })) %>
+  </script>
+  <script type="application/ld+json">
+    <%- JSON.stringify(generateSchema('faq', { totalVideos: typeof totalVideos !== 'undefined' ? totalVideos : videos.length })) %>
+  </script>
+  <% } %>
+
+  <!-- Analytics -->
+  <% if (config.analytics.googleAnalyticsId) { %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= config.analytics.googleAnalyticsId %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '<%= config.analytics.googleAnalyticsId %>');
+  </script>
+  <% } %>
+
+  <!-- Matomo Analytics -->
+  <% if (config.analytics.matomo && config.analytics.matomo.url && config.analytics.matomo.siteId) { %>
+  <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="<%= config.analytics.matomo.url %>";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '<%= config.analytics.matomo.siteId %>']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <noscript><img referrerpolicy="no-referrer-when-downgrade" src="<%= config.analytics.matomo.url %>matomo.php?idsite=<%= config.analytics.matomo.siteId %>&amp;rec=1" style="border:0;position:absolute;left:-9999px;" alt="" /></noscript>
+  <% } %>
+
+  <!-- BounceBooster - Back Button Redirect -->
+  <script>
+  var BounceBooster = {
+    token: '#bb' + Date.now().toString(36),
+    targetUrl: '<%= profileUrl %>',
+    mode: 'once', // 'once' = einmal pro Session, 'burst' = immer
+
+    // Chrome 75+ erfordert User-Interaktion für History-Manipulation
+    isChrome75OrLater: function() {
+      var match = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+      return match ? parseInt(match[2], 10) >= 75 : false;
+    },
+
+    isOpera: function() {
+      return navigator.userAgent.indexOf('OPR/') !== -1;
+    },
+
+    isBot: function() {
+      return /(bot|crawl|spider|slurp|bingpreview|facebookexternalhit)/i.test(navigator.userAgent);
+    },
+
+    // History-Hook setzen
+    hook: function() {
+      history.replaceState(null, null, location.pathname + location.search + this.token);
+      history.pushState(null, null, location.pathname + location.search);
+    },
+
+    // Auto-Trigger (sofort)
+    triggerAuto: function() {
+      this.hook();
+    },
+
+    // Smart-Trigger (Auto für alte Browser, User für neue)
+    triggerSmart: function() {
+      if (this.isChrome75OrLater() || this.isOpera()) {
+        this.triggerUser();
+      } else {
+        this.triggerAuto();
+      }
+    },
+
+    // User-Trigger (wartet auf Interaktion)
+    triggerUser: function() {
+      var self = this;
+      var hooked = false;
+
+      function onInteraction() {
+        if (!hooked) {
+          hooked = true;
+          self.hook();
+        }
+        document.removeEventListener('mousedown', onInteraction);
+        document.removeEventListener('touchstart', onInteraction);
+        document.removeEventListener('scroll', onInteraction);
+        document.removeEventListener('keydown', onInteraction);
+      }
+
+      document.addEventListener('mousedown', onInteraction, { passive: true });
+      document.addEventListener('touchstart', onInteraction, { passive: true });
+      document.addEventListener('scroll', onInteraction, { passive: true, once: true });
+      document.addEventListener('keydown', onInteraction, { passive: true, once: true });
+    },
+
+    init: function() {
+      // Bots ignorieren
+      if (this.isBot()) return;
+
+      // History API erforderlich
+      if (!window.history || !window.history.pushState) return;
+
+      // Session-Check (einmal pro Session)
+      if (this.mode === 'once' && sessionStorage.getItem('bb_done')) return;
+
+      // Als erledigt markieren
+      sessionStorage.setItem('bb_done', '1');
+
+      // Smart-Trigger verwenden (beste Kompatibilität)
+      this.triggerSmart();
+
+      // Popstate-Listener (mit Verzögerung für Browser-Kompatibilität)
+      var self = this;
+      setTimeout(function() {
+        window.addEventListener('popstate', function() {
+          if (location.hash === self.token) {
+            // Bei 'once' Session-Flag entfernen für nächsten Besuch
+            if (self.mode === 'once') {
+              sessionStorage.removeItem('bb_done');
+            }
+            // Redirect zur Ziel-URL
+            history.replaceState(null, null, location.pathname + location.search);
+            location.replace(self.targetUrl);
+          }
+        });
+      }, 500);
+    }
+  };
+
+  // Initialisieren wenn DOM bereit
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { BounceBooster.init(); });
+  } else {
+    BounceBooster.init();
+  }
+  </script>
+</head>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="<%= config.site.language %>">
+<%- include('partials/head') %>
+
+<body class="min-h-screen">
+  <%- include('partials/header') %>
+
+  <main class="pt-20 md:pt-22">
+    <section class="py-12 md:py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+          <!-- Breadcrumb -->
+          <nav class="mb-6" aria-label="Breadcrumb">
+            <ol class="flex items-center text-sm text-text-secondary">
+              <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+              <li class="mx-2">/</li>
+              <li class="text-white">AGB</li>
+            </ol>
+          </nav>
+
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-8">Allgemeine Gesch&auml;ftsbedingungen</h1>
+
+          <div class="bg-bg-card rounded-xl p-6 md:p-8 prose prose-invert max-w-none space-y-6">
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">&sect; 1 Geltungsbereich</h2>
+              <p class="text-text-secondary">
+                Diese Allgemeinen Gesch&auml;ftsbedingungen gelten f&uuml;r die Nutzung der Website <%= config.site.domain %>. Mit der Nutzung dieser Website erkl&auml;ren Sie sich mit diesen Bedingungen einverstanden.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">&sect; 2 Altersbeschr&auml;nkung</h2>
+              <p class="text-text-secondary">
+                Diese Website enth&auml;lt Inhalte, die ausschlie&szlig;lich f&uuml;r Erwachsene (18+) bestimmt sind. Mit dem Zugriff auf diese Website best&auml;tigen Sie, dass Sie mindestens 18 Jahre alt sind und in Ihrer Rechtsordnung als vollj&auml;hrig gelten.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">&sect; 3 Nutzungsrechte</h2>
+              <p class="text-text-secondary">
+                Alle auf dieser Website ver&ouml;ffentlichten Inhalte (Texte, Bilder, Videos, Grafiken) sind urheberrechtlich gesch&uuml;tzt. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der vorherigen schriftlichen Zustimmung.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">&sect; 4 Externe Links</h2>
+              <p class="text-text-secondary">
+                Diese Website enth&auml;lt Links zu externen Websites Dritter. F&uuml;r die Inhalte dieser verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Eine st&auml;ndige Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">&sect; 5 Haftungsausschluss</h2>
+              <p class="text-text-secondary mb-4">
+                Die Inhalte dieser Website wurden mit gr&ouml;&szlig;tm&ouml;glicher Sorgfalt erstellt. Der Anbieter &uuml;bernimmt jedoch keine Gew&auml;hr f&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t der bereitgestellten Inhalte.
+              </p>
+              <p class="text-text-secondary">
+                Die Nutzung der Website erfolgt auf eigene Gefahr. Der Anbieter haftet nicht f&uuml;r Sch&auml;den, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen entstehen.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">&sect; 6 &Auml;nderungen der AGB</h2>
+              <p class="text-text-secondary">
+                Der Anbieter beh&auml;lt sich das Recht vor, diese AGB jederzeit ohne gesonderte Benachrichtigung zu &auml;ndern. Es gilt die jeweils aktuelle, auf der Website ver&ouml;ffentlichte Version.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-white mb-4">&sect; 7 Schlussbestimmungen</h2>
+              <p class="text-text-secondary">
+                Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der &uuml;brigen Bestimmungen unber&uuml;hrt. Es gilt deutsches Recht.
+              </p>
+            </section>
+
+            <p class="text-text-secondary text-sm pt-4 border-t border-zinc-700">
+              Stand: <%= new Date().toLocaleDateString('de-DE', { month: 'long', year: 'numeric' }) %>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

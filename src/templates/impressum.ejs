@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="<%= config.site.language %>">
+<%- include('partials/head') %>
+
+<body class="min-h-screen">
+  <%- include('partials/header') %>
+
+  <main class="pt-20 md:pt-22">
+    <section class="py-12 md:py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+          <!-- Breadcrumb -->
+          <nav class="mb-6" aria-label="Breadcrumb">
+            <ol class="flex items-center text-sm text-text-secondary">
+              <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+              <li class="mx-2">/</li>
+              <li class="text-white">Impressum</li>
+            </ol>
+          </nav>
+
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-8">Impressum</h1>
+
+          <div class="bg-bg-card rounded-xl p-6 md:p-8 prose prose-invert max-w-none">
+            <h2 class="text-xl font-semibold text-white mb-4">Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
+            <p class="text-text-secondary mb-6">
+              [Name / Firma]<br>
+              [Stra&szlig;e Hausnummer]<br>
+              [PLZ Ort]<br>
+              [Land]
+            </p>
+
+            <h2 class="text-xl font-semibold text-white mb-4">Kontakt</h2>
+            <p class="text-text-secondary mb-6">
+              E-Mail: [E-Mail-Adresse]
+            </p>
+
+            <h2 class="text-xl font-semibold text-white mb-4">Verantwortlich f&uuml;r den Inhalt nach &sect; 55 Abs. 2 RStV</h2>
+            <p class="text-text-secondary mb-6">
+              [Name]<br>
+              [Anschrift]
+            </p>
+
+            <h2 class="text-xl font-semibold text-white mb-4">Haftungsausschluss</h2>
+
+            <h3 class="text-lg font-semibold text-white mb-2">Haftung f&uuml;r Inhalte</h3>
+            <p class="text-text-secondary mb-4">
+              Die Inhalte unserer Seiten wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen.
+            </p>
+
+            <h3 class="text-lg font-semibold text-white mb-2">Haftung f&uuml;r Links</h3>
+            <p class="text-text-secondary mb-4">
+              Unser Angebot enth&auml;lt Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen.
+            </p>
+
+            <h3 class="text-lg font-semibold text-white mb-2">Urheberrecht</h3>
+            <p class="text-text-secondary">
+              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
