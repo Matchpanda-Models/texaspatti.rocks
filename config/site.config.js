@@ -134,8 +134,8 @@ export default {
   analytics: {
     googleAnalyticsId: null,
     matomo: {
-      url: null,                           // e.g. "https://matomo.example.com/"
-      siteId: null                         // e.g. 1
+      url: 'https://matomo.matchpanda.org',                           // e.g. "https://matomo.example.com/"
+      siteId: 52                         // e.g. 1
     }
   },
 
