@@ -1,8 +1,8 @@
 <footer class="bg-bg-secondary border-t border-zinc-800 mt-16">
   <div class="container mx-auto px-4 py-12">
-    <!-- Main Footer -->
+    
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-      <!-- Brand -->
+      
       <div class="md:col-span-2">
         <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>" class="flex items-center gap-3 mb-4">
           <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-primary/50">
@@ -16,7 +16,7 @@
         <p class="text-text-secondary text-sm leading-relaxed max-w-md">
           <%= config.model.bio.substring(0, 200) %>...
         </p>
-        <!-- Social Links -->
+        
         <% if (Object.values(config.model.social).some(Boolean)) { %>
         <div class="flex gap-4 mt-6">
           <% if (config.model.social.instagram) { %>
@@ -43,7 +43,7 @@
         <% } %>
       </div>
 
-      <!-- Quick Links -->
+      
       <div>
         <h4 class="text-white font-semibold mb-4">Navigation</h4>
         <ul class="space-y-2">
@@ -53,7 +53,7 @@
         </ul>
       </div>
 
-      <!-- External Links -->
+      
       <div>
         <h4 class="text-white font-semibold mb-4">Mehr</h4>
         <ul class="space-y-2">
@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <!-- Bottom Bar -->
+    
     <div class="pt-8 border-t border-zinc-800">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="text-text-secondary text-sm flex items-center gap-2">

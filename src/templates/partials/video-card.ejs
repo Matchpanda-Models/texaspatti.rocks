@@ -1,6 +1,6 @@
 <article class="group cursor-pointer bg-bg-card rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1">
   <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>videos/<%= video.slug %>/" class="block">
-    <!-- Thumbnail -->
+    
     <div class="relative aspect-video overflow-hidden">
       <img
         src="<%= video.thumbnail %>"
@@ -10,10 +10,10 @@
         onerror="this.src='https://via.placeholder.com/640x360/262626/ffffff?text=Video'"
       >
 
-      <!-- Gradient Overlay -->
+      
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-      <!-- Play Button Overlay -->
+      
       <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
         <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/90 flex items-center justify-center transform scale-75 group-hover:scale-100 transition-all duration-300 shadow-xl shadow-primary/50">
           <svg class="w-7 h-7 md:w-8 md:h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -22,28 +22,28 @@
         </div>
       </div>
 
-      <!-- Date Badge (bottom-left) -->
+      
       <% if (video.dateFormatted) { %>
       <span class="absolute bottom-2 left-2 px-2 py-1 bg-black/80 text-white text-xs font-medium rounded-md backdrop-blur-sm">
         <%= video.dateFormatted %>
       </span>
       <% } %>
 
-      <!-- Duration Badge (bottom-right) -->
+      
       <% if (config.videoSettings.showDuration && video.durationFormatted && video.durationFormatted !== '0:00') { %>
       <span class="absolute bottom-2 right-2 px-2 py-1 bg-black/80 text-white text-xs font-medium rounded-md backdrop-blur-sm">
         <%= video.durationFormatted %>
       </span>
       <% } %>
 
-      <!-- HD Badge -->
+      
       <% if (video.isHD) { %>
       <span class="absolute top-2 left-2 px-2 py-0.5 bg-accent text-black text-xs font-bold rounded-md uppercase">
         HD
       </span>
       <% } %>
 
-      <!-- New Badge -->
+      
       <% if (video.isNew) { %>
       <span class="absolute top-2 right-2 px-2 py-0.5 bg-primary text-white text-xs font-bold rounded-md uppercase animate-pulse">
         Neu
@@ -51,13 +51,13 @@
       <% } %>
     </div>
 
-    <!-- Content -->
+    
     <div class="p-4">
       <h3 class="text-white font-semibold text-sm md:text-base line-clamp-2 mb-2 group-hover:text-primary transition-colors">
         <%= video.title %>
       </h3>
 
-      <!-- Tags -->
+      
       <% if (video.tags && video.tags.length > 0) { %>
       <div class="flex flex-wrap gap-1.5">
         <% video.tags.slice(0, 3).forEach(function(tag) { %>

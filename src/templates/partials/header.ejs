@@ -1,7 +1,7 @@
 <header class="fixed top-0 left-0 right-0 z-40 bg-bg-primary/80 backdrop-blur-lg border-b border-zinc-800">
   <div class="container mx-auto px-4">
     <nav class="flex items-center justify-between h-16 md:h-20">
-      <!-- Logo / Brand -->
+      
       <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>" class="flex items-center gap-2 md:gap-3 group">
         <div class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden ring-2 ring-primary/50 group-hover:ring-primary transition-all flex-shrink-0">
           <img src="<%= (typeof basePath !== 'undefined' ? basePath : '') + (typeof profile !== 'undefined' && profile && profile.avatar ? profile.avatar.replace(/^\//, '') : config.model.avatar.replace(/^\//, '')) %>" alt="<%= config.model.name %>" class="w-full h-full object-cover">
@@ -15,7 +15,7 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation -->
+      
       <div class="hidden md:flex items-center gap-8">
         <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>" class="text-text-secondary hover:text-white transition-colors py-2">Home</a>
         <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>videos/" class="text-text-secondary hover:text-white transition-colors py-2">Videos</a>
@@ -28,7 +28,7 @@
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
+      
       <button id="mobile-menu-btn" class="md:hidden p-2 text-text-secondary hover:text-white transition-colors" aria-label="Menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -37,7 +37,7 @@
     </nav>
   </div>
 
-  <!-- Mobile Menu -->
+  
   <div id="mobile-menu" class="md:hidden hidden bg-bg-secondary border-b border-zinc-800">
     <div class="container mx-auto px-4 py-4 space-y-4">
       <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>" class="block py-2 text-text-secondary hover:text-white transition-colors">Home</a>

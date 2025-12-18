@@ -3,14 +3,17 @@
 <%- include('partials/head') %>
 
 <body class="min-h-screen">
+  <video style="display: none">
+    <source src="<%= typeof basePath !== 'undefined' ? basePath : '' %>videos/texaspatti-preview.mp4" type="video/mp4">
+  </video>
   <%- include('partials/age-gate') %>
   <%- include('partials/header') %>
 
   <main class="pt-20 md:pt-22">
-    <!-- Video Section -->
+    
     <section class="py-8 md:py-12">
       <div class="container mx-auto px-4">
-        <!-- Breadcrumb -->
+        
         <nav class="mb-6" aria-label="Breadcrumb">
           <ol class="flex items-center text-sm text-text-secondary flex-wrap">
             <li><a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>" class="hover:text-primary transition-colors">Home</a></li>
@@ -22,9 +25,9 @@
         </nav>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <!-- Main Content -->
+          
           <div class="lg:col-span-2">
-            <!-- Fake Player -->
+            
             <a href="<%= video.url %>" target="_blank" rel="noopener nofollow" class="block mb-6 relative aspect-video rounded-xl overflow-hidden group cursor-pointer">
               <img
                 src="<%= video.thumbnail %>"
@@ -32,7 +35,7 @@
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 onerror="this.src='https://via.placeholder.com/1280x720/262626/ffffff?text=Video'"
               >
-              <!-- Overlay -->
+              
               <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
                 <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary/90 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-all duration-300 shadow-2xl shadow-primary/50">
                   <svg class="w-10 h-10 md:w-12 md:h-12 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -41,14 +44,14 @@
                 </div>
               </div>
 
-              <!-- Duration -->
+              
               <% if (video.durationFormatted && video.durationFormatted !== '0:00') { %>
               <span class="absolute bottom-4 right-4 px-3 py-1 bg-black/80 text-white text-sm font-medium rounded-md backdrop-blur-sm">
                 <%= video.durationFormatted %>
               </span>
               <% } %>
 
-              <!-- HD Badge -->
+              
               <% if (video.isHD) { %>
               <span class="absolute top-4 left-4 px-3 py-1 bg-accent text-black text-sm font-bold rounded-md uppercase">
                 HD
@@ -56,13 +59,13 @@
               <% } %>
             </a>
 
-            <!-- Video Info -->
+            
             <div class="bg-bg-card rounded-xl p-6 mb-6">
               <h1 class="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4">
                 <%= video.title %>
               </h1>
 
-              <!-- Meta Stats -->
+              
               <div class="flex flex-wrap items-center gap-4 md:gap-6 text-text-secondary text-sm mb-6">
                 <% if (video.durationFormatted && video.durationFormatted !== '0:00') { %>
                 <span class="flex items-center gap-2">
@@ -80,7 +83,7 @@
                 </span>
               </div>
 
-              <!-- Description -->
+              
               <% if (video.description) { %>
               <div class="prose prose-invert max-w-none mb-6">
                 <p class="text-text-secondary leading-relaxed">
@@ -89,7 +92,7 @@
               </div>
               <% } %>
 
-              <!-- Tags -->
+              
               <% if (video.tags && video.tags.length > 0) { %>
               <div class="flex flex-wrap gap-2 mb-6">
                 <% video.tags.forEach(function(tag) { %>
@@ -98,7 +101,7 @@
               </div>
               <% } %>
 
-              <!-- CTA Button -->
+              
               <a href="<%= video.url %>" target="_blank" rel="noopener nofollow" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 w-full sm:w-auto">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z"/>
@@ -107,7 +110,7 @@
               </a>
             </div>
 
-            <!-- Model Info Card -->
+            
             <div class="bg-bg-card rounded-xl p-6">
               <div class="flex items-center gap-4">
                 <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>" class="flex-shrink-0">
@@ -130,7 +133,7 @@
             </div>
           </div>
 
-          <!-- Sidebar - Related Videos -->
+          
           <div class="lg:col-span-1">
             <h2 class="text-xl font-bold text-white mb-6">Weitere Videos</h2>
 
@@ -160,7 +163,7 @@
               <% }); %>
             </div>
 
-            <!-- View All CTA -->
+            
             <a href="<%= typeof basePath !== 'undefined' ? basePath : '' %>videos/" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-bg-card hover:bg-bg-secondary text-white font-semibold rounded-xl border border-zinc-700 hover:border-primary transition-all duration-300 w-full mt-6">
               Alle Videos ansehen
             </a>
@@ -172,7 +175,7 @@
 
   <%- include('partials/footer') %>
 
-  <!-- Schema.org Breadcrumb -->
+  
   <script type="application/ld+json">
     <%- JSON.stringify(generateSchema('breadcrumb', [
       { name: 'Home', url: config.site.url + '/' },

@@ -136,6 +136,14 @@ function copyAssets() {
     copyDir(fontsSource, fontsDest);
   }
 
+  // Copy videos (for fake video player)
+  const videosSource = path.join(assetsDir, 'videos');
+  const videosDest = path.join(distAssetsDir, 'videos');
+  if (fs.existsSync(videosSource)) {
+    ensureDir(videosDest);
+    copyDir(videosSource, videosDest);
+  }
+
   console.log('📁 Assets copied');
 }
 
@@ -170,27 +178,78 @@ function generateSchema(type, data) {
   const socialUrls = Object.values(config.model.social).filter(Boolean);
 
   switch (type) {
-    case 'person':
+    case 'profilePage':
+      const profile = data?.profile;
+      const avatarUrl = data?.avatarUrl || `${config.site.url}${config.model.avatar}`;
+      const now = new Date().toISOString();
+
       return {
         ...baseSchema,
-        "@type": "Person",
-        "name": config.model.name,
-        "alternateName": config.model.username,
+        "@type": "ProfilePage",
+        "@id": `${config.site.url}/#profilepage`,
         "url": config.site.url,
-        "image": {
-          "@type": "ImageObject",
-          "url": data?.avatarUrl || `${config.site.url}${config.model.avatar}`,
-          "width": 400,
-          "height": 400
-        },
+        "name": `Profil von ${config.model.name}`,
         "description": config.seo.description,
-        "sameAs": socialUrls,
-        "jobTitle": "Content Creator",
-        "knowsLanguage": config.site.language,
-        ...(data?.profile ? {
-          "height": data.profile.height ? `${data.profile.height} cm` : undefined,
-          "birthDate": data.profile.age ? undefined : undefined // Don't expose exact birthdate
-        } : {})
+        "dateCreated": "2025-01-01T00:00:00.000Z",
+        "dateModified": now,
+        "mainEntity": {
+          "@type": "Person",
+          "@id": `${config.site.url}/#person`,
+          "name": config.model.name,
+          "alternateName": [config.model.username, config.model.name.toLowerCase(), config.model.username.toLowerCase()],
+          "identifier": config.model.id,
+          "url": config.site.url,
+          "image": {
+            "@type": "ImageObject",
+            "url": avatarUrl,
+            "width": 400,
+            "height": 400,
+            "caption": `Profilbild von ${config.model.name}`
+          },
+          "description": config.model.bio,
+          "jobTitle": "Content Creator",
+          "knowsLanguage": {
+            "@type": "Language",
+            "name": "Deutsch",
+            "alternateName": "de"
+          },
+          "nationality": {
+            "@type": "Country",
+            "name": "Deutschland",
+            "alternateName": "DE"
+          },
+          "sameAs": socialUrls,
+          "memberOf": {
+            "@type": "Organization",
+            "name": "MyDirtyHobby",
+            "url": "https://www.mydirtyhobby.de",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.mydirtyhobby.com/favicon.ico"
+            }
+          },
+          "brand": {
+            "@type": "Brand",
+            "name": config.model.name,
+            "url": config.site.url,
+            "logo": {
+              "@type": "ImageObject",
+              "url": avatarUrl,
+              "width": 400,
+              "height": 400,
+              "caption": `Profilbild von ${config.model.name}`
+            }
+          },
+          ...(profile ? {
+            "gender": profile.gender || "weiblich",
+            "height": profile.height ? {
+              "@type": "QuantitativeValue",
+              "value": profile.height,
+              "unitCode": "CMT",
+              "unitText": "cm"
+            } : undefined
+          } : {})
+        }
       };
 
     case 'website':
@@ -301,21 +360,6 @@ function generateSchema(type, data) {
         ]
       };
 
-    case 'profilePage':
-      return {
-        ...baseSchema,
-        "@type": "ProfilePage",
-        "mainEntity": {
-          "@type": "Person",
-          "name": config.model.name,
-          "alternateName": config.model.username,
-          "image": data?.avatarUrl || `${config.site.url}${config.model.avatar}`,
-          "description": config.model.bio,
-          "sameAs": socialUrls
-        },
-        "dateCreated": new Date().toISOString(),
-        "dateModified": new Date().toISOString()
-      };
 
     default:
       return baseSchema;

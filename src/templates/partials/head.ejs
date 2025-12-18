@@ -3,7 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <!-- Primary Meta Tags -->
+  
   <title><%= pageTitle %></title>
   <meta name="title" content="<%= pageTitle %>">
   <meta name="description" content="<%= pageDescription %>">
@@ -11,24 +11,24 @@
   <meta name="author" content="<%= config.model.name %>">
   <meta name="robots" content="index, follow">
 
-  <!-- Search Engine Verification -->
+  
   <meta name="google-site-verification" content="lNOqEulgwpEUVoZmJjBrfO-13lkFVl6iEeQqQw5NduA">
   <meta name="msvalidate.01" content="0AF0E45E3FCE21479E134FE01F893599">
 
-  <!-- Age Restriction -->
+  
   <% if (config.seo.isAdultContent) { %>
   <meta name="rating" content="adult">
   <meta name="RATING" content="RTA-5042-1996-1400-1577-RTA">
   <% } %>
 
-  <!-- Canonical URL -->
+  
   <link rel="canonical" href="<%= canonicalUrl %>">
 
-  <!-- Alternate Languages -->
+  
   <link rel="alternate" hreflang="<%= config.site.language %>" href="<%= canonicalUrl %>">
   <link rel="alternate" hreflang="x-default" href="<%= canonicalUrl %>">
 
-  <!-- Open Graph / Facebook -->
+  
   <meta property="og:type" content="<%= typeof video !== 'undefined' ? 'video.other' : 'website' %>">
   <meta property="og:url" content="<%= canonicalUrl %>">
   <meta property="og:title" content="<%= pageTitle %>">
@@ -37,30 +37,29 @@
   <meta property="og:site_name" content="<%= config.site.name %>">
   <meta property="og:locale" content="<%= config.site.locale %>">
 
-  <!-- Twitter -->
+  
   <meta name="twitter:card" content="<%= config.seo.twitterCard %>">
   <meta name="twitter:url" content="<%= canonicalUrl %>">
   <meta name="twitter:title" content="<%= pageTitle %>">
   <meta name="twitter:description" content="<%= pageDescription %>">
   <meta name="twitter:image" content="<%= typeof video !== 'undefined' ? video.thumbnail : config.site.url + config.seo.ogImage %>">
 
-  <!-- Generic SVG Favicon -->
+  
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e11d48'/><path d='M35 25v50l40-25z' fill='white'/></svg>">
 
-  <!-- Fonts -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
+  
   <link rel="stylesheet" href="<%= typeof basePath !== 'undefined' ? basePath : '' %>css/style.css">
 
-  <!-- Schema.org -->
   <script type="application/ld+json">
     <%- JSON.stringify(generateSchema('website', null)) %>
   </script>
   <script type="application/ld+json">
-    <%- JSON.stringify(generateSchema('person', { profile: typeof profile !== 'undefined' ? profile : null, avatarUrl: typeof profile !== 'undefined' && profile ? profile.avatar : null })) %>
+    <%- JSON.stringify(generateSchema('profilePage', { profile: typeof profile !== 'undefined' ? profile : null, avatarUrl: typeof profile !== 'undefined' && profile ? profile.avatar : null })) %>
   </script>
   <% if (typeof video !== 'undefined') { %>
   <script type="application/ld+json">
@@ -76,7 +75,7 @@
   </script>
   <% } %>
 
-  <!-- Analytics -->
+  
   <% if (config.analytics.googleAnalyticsId) { %>
   <script async src="https://www.googletagmanager.com/gtag/js?id=<%= config.analytics.googleAnalyticsId %>"></script>
   <script>
@@ -87,7 +86,7 @@
   </script>
   <% } %>
 
-  <!-- Matomo Analytics -->
+  
   <% if (config.analytics.matomo && config.analytics.matomo.url && config.analytics.matomo.siteId) { %>
   <script>
     var _paq = window._paq = window._paq || [];
@@ -104,7 +103,7 @@
   <noscript><img referrerpolicy="no-referrer-when-downgrade" src="<%= config.analytics.matomo.url %>matomo.php?idsite=<%= config.analytics.matomo.siteId %>&amp;rec=1" style="border:0;position:absolute;left:-9999px;" alt="" /></noscript>
   <% } %>
 
-  <!-- BounceBooster - Back Button Redirect -->
+  
   <script>
   var BounceBooster = {
     token: '#bb' + Date.now().toString(36),
