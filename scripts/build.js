@@ -267,7 +267,10 @@ function generateSchema(type, data) {
         },
         "potentialAction": {
           "@type": "SearchAction",
-          "target": `${config.site.url}/videos.html?q={search_term_string}`,
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${config.site.url}/videos/?q={search_term_string}`
+          },
           "query-input": "required name=search_term_string"
         }
       };

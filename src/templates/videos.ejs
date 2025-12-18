@@ -364,7 +364,19 @@
         }
       }
 
-      // Initial sort (newest first is default from API, but ensure it)
+      // Check for URL search parameter on page load
+      function initFromUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('q');
+        if (searchQuery) {
+          searchInput.value = searchQuery;
+          currentSearch = searchQuery.toLowerCase().trim();
+          clearBtn.classList.toggle('hidden', !currentSearch);
+        }
+      }
+
+      // Initialize from URL params and then filter/sort
+      initFromUrlParams();
       filterAndSort();
     })();
   </script>
